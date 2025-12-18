@@ -1,7 +1,7 @@
 import { VideoItem, FilterState } from '../types';
 
-const YOUTUBE_API_KEY = 'AIzaSyA5BtxcEiU-Air5C0C9SyszCPC1SUC6fz4'; // Provided by user
-const BASE_URL = 'https://www.googleapis.com/youtube/v3';
+const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
+const BASE_URL = import.meta.env.VITE_YOUTUBE_BASE_URL;
 
 // Helper to parse ISO 8601 duration to seconds
 const parseDuration = (duration: string): number => {
@@ -53,7 +53,7 @@ export const searchVideos = async (
   try {
     // 1. Search for video IDs
     const publishedAfter = getPublishedAfterDate(filters.dateRange);
-    
+
     // API duration filter mapping
     let videoDurationParams = 'any';
     if (filters.duration === 'short') videoDurationParams = 'short'; // API 'short' is < 4 mins, we refine later
@@ -122,10 +122,10 @@ export const searchVideos = async (
       const viewCount = parseInt(item.statistics.viewCount || '0');
       const channelId = item.snippet.channelId;
       const subscriberCount = channelMap[channelId] || 0;
-      
+
       // Avoid division by zero
       const ratio = subscriberCount > 0 ? viewCount / subscriberCount : 0;
-      
+
       return {
         id: item.id,
         title: item.snippet.title,
@@ -141,7 +141,7 @@ export const searchVideos = async (
       };
     }).filter((video: VideoItem) => {
       // Client-side filtering
-      
+
       // Duration Filter (Strict)
       if (filters.duration === 'short') {
         const seconds = parseDuration(video.duration);

@@ -13,7 +13,7 @@ const getSystemInstruction = () => {
 export const translateKeyword = async (keyword: string, targetCountry: string): Promise<string> => {
   if (!process.env.API_KEY) {
     console.warn("Gemini API Key missing. Returning original keyword.");
-    return keyword; 
+    return keyword;
   }
 
   // Language mapping
@@ -42,7 +42,7 @@ export const translateKeyword = async (keyword: string, targetCountry: string): 
         temperature: 0.1, // Low temperature for deterministic output
       }
     });
-    
+
     return response.text.trim();
   } catch (error) {
     console.error("Gemini Translation Failed:", error);

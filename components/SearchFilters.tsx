@@ -10,7 +10,7 @@ interface SearchFiltersProps {
 }
 
 const SearchFilters: React.FC<SearchFiltersProps> = ({ filters, setFilters, onSearch, isLoading }) => {
-  
+
   const handleChange = (key: keyof FilterState, value: any) => {
     setFilters(prev => ({ ...prev, [key]: value }));
   };
@@ -37,32 +37,32 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ filters, setFilters, onSe
             />
           </div>
         </div>
-        
+
         <div className="w-full lg:w-40 shrink-0">
-           <label className="block text-xs font-bold text-gray-500 mb-1">국가</label>
-           <select
-             value={filters.country}
-             onChange={(e) => handleChange('country', e.target.value)}
-             className="w-full h-10 px-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
-           >
-             <option value="한국">한국</option>
-             <option value="미국">미국</option>
-             <option value="일본">일본</option>
-             <option value="인도네시아">인도네시아</option>
-             <option value="인도">인도</option>
-             <option value="베트남">베트남</option>
-             <option value="러시아">러시아</option>
-           </select>
+          <label className="block text-xs font-bold text-gray-500 mb-1">국가</label>
+          <select
+            value={filters.country}
+            onChange={(e) => handleChange('country', e.target.value)}
+            className="w-full h-10 px-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
+          >
+            <option value="한국">한국</option>
+            <option value="미국">미국</option>
+            <option value="일본">일본</option>
+            <option value="인도네시아">인도네시아</option>
+            <option value="인도">인도</option>
+            <option value="베트남">베트남</option>
+            <option value="러시아">러시아</option>
+          </select>
         </div>
 
         <div className="w-full lg:w-auto shrink-0">
-           <button
-             onClick={onSearch}
-             disabled={isLoading}
-             className="w-full lg:w-auto h-10 bg-red-600 hover:bg-red-700 text-white px-6 rounded-lg font-bold text-sm transition-colors disabled:opacity-50 whitespace-nowrap"
-           >
-             {isLoading ? '검색 중...' : '검색 실행'}
-           </button>
+          <button
+            onClick={onSearch}
+            disabled={isLoading}
+            className="w-full lg:w-auto h-10 bg-red-600 hover:bg-red-700 text-white px-6 rounded-lg font-bold text-sm transition-colors disabled:opacity-50 whitespace-nowrap"
+          >
+            {isLoading ? '검색 중...' : '검색 실행'}
+          </button>
         </div>
       </div>
       <p className="text-[10px] text-gray-400 mb-6">* 국가 선택 시 해당 국가 언어로 자동 검색 (API 지역 설정)</p>
@@ -139,11 +139,10 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ filters, setFilters, onSe
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => handleLevelChange('all')}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-              filters.performanceLevel === 'all' 
-                ? 'bg-purple-100 text-purple-700 border-2 border-purple-200' 
-                : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
-            }`}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${filters.performanceLevel === 'all'
+              ? 'bg-purple-100 text-purple-700 border-2 border-purple-200'
+              : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
+              }`}
           >
             전체 보기
           </button>
@@ -151,17 +150,16 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ filters, setFilters, onSe
             <button
               key={level}
               onClick={() => handleLevelChange(level)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                filters.performanceLevel === level
-                   ? 'bg-purple-100 text-purple-700 border-2 border-purple-200' 
-                   : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
-              }`}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${filters.performanceLevel === level
+                ? 'bg-purple-100 text-purple-700 border-2 border-purple-200'
+                : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
+                }`}
             >
               Level {level}
             </button>
           ))}
         </div>
-        <p className="text-[10px] text-gray-400 mt-2">* Level 3 (비율 ~1:1), Level 5 (비율 > 5:1, 매우 높음)</p>
+        <p className="text-[10px] text-gray-400 mt-2">* Level 3 (비율 &tilde;1:1), Level 5 (비율 &gt; 5:1, 매우 높음)</p>
       </div>
     </div>
   );
